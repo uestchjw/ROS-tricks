@@ -1,0 +1,19 @@
+number_1 :  查看软件源:sudo gedit /etc/apt/sources.list
+
+number_2 :  sudo apt-get update 报错（需要更新秘钥）     W: An error occurred during the signature verification. The repository is not updated and the previous index files will be used. GPG error: http://mirrors.tuna.tsinghua.edu.cn/ros/ubuntu bionic Release: The following signatures were invalid: EXPKEYSIG F42ED6FBAB17C654 Open Robotics <info@osrfoundation.org>
+                                        W:Failed to fetch http://mirrors.tuna.tsinghua.edu.cn/ros/ubuntu/dists/bionic/Release.gpg  The following signatures were invalid: EXPKEYSIG F42ED6FBAB17C654 Open Robotics <info@osrfoundation.org>
+                                        W: Some index files failed to download. They have been ignored, or old ones used instead.
+            解决办法:更新所有KEY
+            sudo apt-get clean
+            cd /var/liblapt
+            sudo mv lists lists.oldsudo mkdir -p lists/partialsudo apt-get clean
+            sudo apt-get update
+            完美解决
+            
+            按照上面的操作，在最后一步出现了下面的问题：
+            W: GPG error: http://mirrors.tuna.tsinghua.edu.cn/ros/ubuntu bionic Release: The following signatures were invalid: EXPKEYSIG F42ED6FBAB17C654 Open Robotics <info@osrfoundation.org>
+            E: The repository 'http://mirrors.tuna.tsinghua.edu.cn/ros/ubuntu bionic Release' is not signed.
+            N: Updating from such a repository can't be done securely, and is therefore disabled by default.
+            N: See apt-secure(8) manpage for repository creation and user configuration details.
+            解决方案：https://blog.csdn.net/lyh458/article/details/117394483
+
